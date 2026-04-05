@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # MinIO - S3-compatible object storage
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"   # API
+      - "9001:9001"   # Console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - spark-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # MinIO Client - Create buckets on startup
+  minio-init:
+    image: minio/mc:latest
+    container_name: minio-init
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      /usr/bin/mc config host add myminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/orders-raw --ignore-existing;
+      /usr/bin/mc mb myminio/orders-processed --ignore-existing;
+      /usr/bin/mc mb myminio/fraud-alerts --ignore-existing;
+      /usr/bin/mc policy set download myminio/orders-raw;
+      /usr/bin/mc policy set download myminio/orders-processed;
+      exit 0;
+      "
+    networks:
+      - spark-network
+
+networks:
+  spark-network:
+    external: true
+    name: stage-1-kafka_kafka-network
+
+volumes:
+  minio-data:
