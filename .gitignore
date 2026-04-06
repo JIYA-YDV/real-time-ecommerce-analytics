@@ -1,15 +1,233 @@
-venv/
-.venv/
+# ============================================
+# Python
+# ============================================
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+*.pyc
 
-# Spark / Hadoop / Ivy
-.ivy2/
-*.jar
+# Virtual Environments
+venv/
+env/
+ENV/
+*.venv
+.venv/
 
-# OS / misc
-.DS_Store
+# ============================================
+# Spark & Hadoop
+# ============================================
+# Checkpoint directories (contains binary state)
+**/checkpoint/
+**/checkpoints/
+checkpoint/
+checkpoints/
+
+# Spark event logs
+spark-warehouse/
+derby.log
+metastore_db/
+*.log
+
+# ============================================
+# Large JAR Files (GitHub 100MB limit)
+# ============================================
+# AWS SDK is 267MB - too large for GitHub
+**/jars/aws-java-sdk-bundle-*.jar
+Stage-2-Spark/jars/aws-java-sdk-bundle-*.jar
+
+# Alternatively: Ignore ALL JARs, then add exceptions
+# **/jars/*.jar
+# !**/jars/hadoop-aws-*.jar
+# !**/jars/kafka-clients-*.jar
+# !**/jars/commons-pool2-*.jar
+# !**/jars/spark-sql-kafka-*.jar
+# !**/jars/spark-token-provider-*.jar
+
+# ============================================
+# Data Files (can be huge)
+# ============================================
+# Parquet files
+*.parquet
+
+# CSV files
+*.csv
+*.tsv
+
+# Avro files
+*.avro
+
+# JSON data files (but not config files)
+data/**/*.json
+
+# Data directories
+**/data/
+**/raw/
+**/processed/
+**/output/
+
+# ============================================
+# Docker
+# ============================================
+# Docker volumes
+**/volumes/
+docker-compose.override.yml
+
+# ============================================
+# Database
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# PostgreSQL data directory
+**/postgres-data/
+**/pgdata/
+
+# ============================================
+# IDE & Editors
+# ============================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# OS Files
+# ============================================
+# Windows
 Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
 
-# Spark jars
-jars/
-*.jar
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# ============================================
+# Environment & Secrets
+# ============================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+credentials.json
+secrets/
+*.secret
+
+# ============================================
+# Airflow (Stage 5)
+# ============================================
+airflow/logs/
+airflow/*.db
+airflow/*.pid
+airflow/airflow.cfg
+airflow/webserver_config.py
+airflow/airflow-webserver.pid
+
+# ============================================
+# dbt (Stage 4)
+# ============================================
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/dbt_modules/
+
+# ============================================
+# Temporary Files
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.swp
+.cache/
+tmp/
+temp/
+
+# ============================================
+# MinIO/S3 Local Storage
+# ============================================
+minio-data/
+.minio/
+
+# ============================================
+# Build & Distribution
+# ============================================
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# ============================================
+# Testing
+# ============================================
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# ============================================
+# Documentation
+# ============================================
+# Ignore generated docs, but keep source
+docs/_build/
+site/
+
+# Keep important docs
+!docs/images/
+!docs/*.md
+!README.md
+
+# ============================================
+# Git
+# ============================================
+*.orig
+*.rej
+
+# ============================================
+# Misc
+# ============================================
+*.bak
+*.gho
+*.ori
+*.orig
+*.rej
+*.~
+~$*

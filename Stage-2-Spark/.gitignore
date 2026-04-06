@@ -13,3 +13,26 @@ Thumbs.db
 # Spark jars
 jars/
 *.jar
+
+# Large JARs (AWS SDK is 267MB)
+jars/aws-java-sdk-bundle-*.jar
+
+# Checkpoint directories
+checkpoint/
+checkpoints/
+
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Spark logs
+*.log
+derby.log
+metastore_db/
+spark-warehouse/
+
+# Environment
+.env
