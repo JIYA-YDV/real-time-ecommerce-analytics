@@ -1,0 +1,11 @@
+venv/
+.venv/
+__pycache__/
+
+# Spark / Hadoop / Ivy
+.ivy2/
+*.jar
+
+# OS / misc
+.DS_Store
+Thumbs.db
