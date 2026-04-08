@@ -44,8 +44,7 @@ services:
 
 networks:
   spark-network:
-    external: true
-    name: stage-1-kafka_kafka-network
+    driver: bridge
 
 volumes:
   minio-data:

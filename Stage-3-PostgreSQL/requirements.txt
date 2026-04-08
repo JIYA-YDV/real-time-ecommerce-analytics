@@ -1,0 +1,22 @@
+# Database
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.23
+
+# Data processing
+pandas==2.1.4
+pyarrow==14.0.2
+fastparquet==2024.2.0
+
+# MinIO
+minio==7.2.3
+
+# Configuration
+python-dotenv==1.0.0
+configparser==6.0.0
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+
+# Logging
+colorlog==6.8.0
