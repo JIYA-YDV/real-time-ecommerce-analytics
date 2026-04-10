@@ -1,0 +1,26 @@
+@"
+ecommerce_streaming:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: ecommerce_db
+      schema: public
+      threads: 4
+      keepalives_idle: 0
+      connect_timeout: 10
+      
+    prod:
+      type: postgres
+      host: localhost  # Change to RDS endpoint in production
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: ecommerce_prod
+      schema: public
+      threads: 8
+"@ | Out-File -FilePath "profiles.yml" -Encoding utf8

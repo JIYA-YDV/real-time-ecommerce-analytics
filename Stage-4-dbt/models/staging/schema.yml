@@ -1,0 +1,39 @@
+@"
+version: 2
+
+models:
+  - name: stg_orders
+    description: Cleaned and standardized order data
+    columns:
+      - name: order_id
+        description: Unique order identifier
+        tests:
+          - unique
+          - not_null
+      - name: total_amount
+        description: Order total
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 10000
+      - name: order_date
+        description: Order date
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: Customer aggregated metrics
+    columns:
+      - name: customer_id
+        description: Unique customer identifier
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_value
+        description: Total customer spend
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+"@ | Out-File -FilePath "models/staging/schema.yml" -Encoding utf8

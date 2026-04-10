@@ -1,0 +1,8 @@
+@"
+dbt-core==1.7.4
+dbt-postgres==1.7.4
+psycopg2-binary==2.9.9
+sqlfluff==2.3.5
+great-expectations==0.18.8
+pandas==2.1.4
+"@ | Out-File -FilePath "requirements.txt" -Encoding utf8

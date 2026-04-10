@@ -1,0 +1,41 @@
+@"
+name: 'ecommerce_streaming'
+version: '1.0.0'
+config-version: 2
+
+profile: 'ecommerce_streaming'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  ecommerce_streaming:
+    +materialized: view
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts
+
+seeds:
+  ecommerce_streaming:
+    +schema: seeds
+
+tests:
+  ecommerce_streaming:
+    +store_failures: true
+    +schema: test_results
+"@ | Out-File -FilePath "dbt_project.yml" -Encoding utf8
